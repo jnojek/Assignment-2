@@ -11,6 +11,29 @@ h1 {
 <h1>Movies</h1>
 
 <table border="1" class="pretty" style="margin: 0px auto;">
+    <colgroup>
+    <% if cookies[:sort_column] == "title" && cookies[:sort_direction] == "asc" %>
+    <col style="background-color: #a7f7c2;">
+    <% elsif cookies[:sort_column] == "title" && cookies[:sort_direction] == "desc" %>
+    <col style="background-color: #f7a7a7;">
+    <% else %>
+    <col>
+    <% end %>
+    <% if cookies[:sort_column] == "rating" && cookies[:sort_direction] == "asc" %>
+    <col style="background-color: #a7f7c2;">
+    <% elsif cookies[:sort_column] == "rating" && cookies[:sort_direction] == "desc" %>
+    <col style="background-color: #f7a7a7;">
+    <% else %>
+    <col>
+    <% end %>
+    <% if cookies[:sort_column] == "release_date" && cookies[:sort_direction] == "asc" %>
+    <col style="background-color: #a7f7c2;">
+    <% elsif cookies[:sort_column] == "release_date" && cookies[:sort_direction] == "desc" %>
+    <col style="background-color: #f7a7a7;">
+    <% else %>
+    <col>
+    <% end %>
+    </colgroup>
     <thead>
         <th><%= sortable "title"%></th>
         <th><%= sortable "rating"%></th>
