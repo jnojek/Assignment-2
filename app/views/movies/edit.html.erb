@@ -15,7 +15,7 @@ div {text-align: center;}
 
 <br>
 
-<div class="img-with-text" align="center">
+<div>
 
   <% sort_column = cookies[:sort_column] || 'title' %>
   <% sort_direction = cookies[:sort_direction] || 'asc' %>
@@ -23,9 +23,9 @@ div {text-align: center;}
   <%= link_to "Show this movie", @movie %> |
   <%= link_to "Back to Movies", movies_path(:sort => sort_column, :direction => sort_direction) %>
 
-  <img src="../assets/cat3.jfif" alt="cat 3" />
-  
 </div>
 
-
+<div class="img-with-text" align="center">
+  <img src="https://static01.nyt.com/images/2021/09/14/science/07CAT-STRIPES/07CAT-STRIPES-mediumSquareAt3X-v2.jpg" alt="cat 3" />
+</div>
 
