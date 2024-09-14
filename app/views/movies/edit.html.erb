@@ -15,17 +15,17 @@ div {text-align: center;}
 
 <br>
 
-<div>
+<div class="img-with-text" align="center">
 
   <% sort_column = cookies[:sort_column] || 'title' %>
   <% sort_direction = cookies[:sort_direction] || 'asc' %>
 
   <%= link_to "Show this movie", @movie %> |
   <%= link_to "Back to Movies", movies_path(:sort => sort_column, :direction => sort_direction) %>
+
+  <img src="../assets/cat3.jfif" alt="cat 3" />
+  
 </div>
 
-<p class="img-with-text" align="center">
-    <img src="../assets/cat3.jfif" alt="cat 3" />
-</p>
 
 
