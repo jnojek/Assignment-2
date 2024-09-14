@@ -1,9 +1,15 @@
 class MoviesController < ApplicationController
+  helper_method :sort_column, :sort_direction
   before_action :set_movie, only: %i[ show edit update destroy ]
 
   # GET /movies or /movies.json
   def index
-    @movies = Movie.all
+
+    cookies[:sort_column] = { value: sort_column, expires: 1.year.from_now }
+    cookies[:sort_direction] = { value: sort_direction, expires: 1.year.from_now }
+
+    @movies = Movie.order(sort_column + " " + sort_direction)
+
   end
 
   # GET /movies/1 or /movies/1.json
@@ -52,12 +58,22 @@ class MoviesController < ApplicationController
     @movie.destroy!
 
     respond_to do |format|
-      format.html { redirect_to movies_url, notice: "Movie was successfully destroyed." }
+      sort_column = cookies[:sort_column] || 'title'  
+      sort_direction = cookies[:sort_direction] || 'asc'
+      format.html { redirect_to movies_path(:sort => sort_column, :direction => sort_direction), notice: "Movie was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
+
+    def sort_column
+      Movie.column_names.include?(params[:sort]) ? params[:sort] : "title"
+    end
+  
+    def sort_direction
+     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_movie
       @movie = Movie.find(params[:id])

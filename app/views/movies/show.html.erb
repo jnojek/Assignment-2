@@ -3,8 +3,16 @@
 <%= render @movie %>
 
 <div>
+
+  <% sort_column = cookies[:sort_column] || 'title' %>
+  <% sort_direction = cookies[:sort_direction] || 'asc' %>
+
   <%= link_to "Edit this movie", edit_movie_path(@movie) %> |
-  <%= link_to "Back to movies", movies_path %>
+  <%= link_to "Back to Movies", movies_path(:sort => sort_column, :direction => sort_direction) %>
 
   <%= button_to "Destroy this movie", @movie, method: :delete %>
+</div>
+
+<div class="img-with-text">
+    <img src="/assets/cat4.jfif" alt="sometext" />
 </div>

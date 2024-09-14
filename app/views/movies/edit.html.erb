@@ -1,3 +1,12 @@
+<html>
+<head>
+<style>
+h1 {text-align: center;}
+p {text-align: center;}
+div {text-align: center;}
+</style>
+</head>
+
 <% content_for :title, "Editing movie" %>
 
 <h1>Editing movie</h1>
@@ -7,6 +16,14 @@
 <br>
 
 <div>
+
+  <% sort_column = cookies[:sort_column] || 'title' %>
+  <% sort_direction = cookies[:sort_direction] || 'asc' %>
+
   <%= link_to "Show this movie", @movie %> |
-  <%= link_to "Back to movies", movies_path %>
+  <%= link_to "Back to Movies", movies_path(:sort => sort_column, :direction => sort_direction) %>
+</div>
+
+<div class="img-with-text">
+    <img src="/assets/cat5.jfif" alt="sometext" />
 </div>

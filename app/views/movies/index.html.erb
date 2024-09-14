@@ -1,16 +1,39 @@
 <p style="color: green"><%= notice %></p>
 
+<style>
+h1 {
+  text-align: center;
+}
+</style>
+
 <% content_for :title, "Movies" %>
 
 <h1>Movies</h1>
 
-<div id="movies">
-  <% @movies.each do |movie| %>
-    <%= render movie %>
-    <p>
-      <%= link_to "Show this movie", movie %>
-    </p>
-  <% end %>
+<table border="1" class="pretty" style="margin: 0px auto;">
+    <thead>
+        <th><%= sortable "title"%></th>
+        <th><%= sortable "rating"%></th>
+        <th><%= sortable "release_date"%></th>
+    </thead>
+    <tbody>
+      
+      <% @movies.each do |movie| %>
+        <tr>
+          
+          <td><%= link_to movie.title, movie %></td>
+          <td><%= movie.rating %></td>
+          <td><%= movie.release_date %></td>
+          
+        </tr>
+        <% end %> 
+        
+    </tbody>
+</table>
+
+<p style="text-align: center;"> <%= link_to "New movie", new_movie_path %> </p>
+
+<div class="img-with-text">
+    <img src="/assets/cat3.jfif" alt="sometext" />
 </div>
 
-<%= link_to "New movie", new_movie_path %>
